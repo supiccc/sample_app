@@ -7,6 +7,9 @@ end
 
 
 gem 'rails',        '5.0.1'
+gem 'faker',        '1.6.6' #使用半真实的名字和电子邮件地址创建示例用户
+gem 'will_paginate', '3.1.0' #分页样式
+gem 'bootstrap-will_paginate', '0.0.10'#分页样式
 gem 'bcrypt',         '3.1.11'
 gem 'bootstrap-sass', '3.3.6'
 gem 'puma',         '3.4.0'
