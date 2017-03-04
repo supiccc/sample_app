@@ -8,20 +8,22 @@ class UsersController < ApplicationController
   end
 
   def index
-    @users = User.paginate(page: params[:page])
+    # @users = User.paginate(page: params[:page])
     #params[:page]会从第一页开始，比如最开始这个值为1，点击下一页，就会变成2
+    @users = User.where(activated: true).paginate(page: params[:page])
   end
 
   def show
   	@user = User.find(params[:id])
+    redirect_to root_url and return unless logged_in?
   end
 
   def create
   	@user = User.new(user_params)
   	if @user.save
-      log_in @user
-      flash[:success] = "Welcome to the Sample App!"
-      redirect_to @user
+      @user.send_activation_email
+      flash[:info] = "Please check your email to activate your accout."
+      redirect_to root_url
   	else
   		render 'new'
   	end
