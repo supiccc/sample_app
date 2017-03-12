@@ -1,0 +1,6 @@
+<% if @feed_items.any? %>
+	<ol class="microposts">
+		<%= render @feed_items %> #会自动寻找@feed_items的Micropost类，正确渲染
+	</ol>
+	<%= will_paginate @feed_items %>
+<% end %>
